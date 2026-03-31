@@ -1,0 +1,31 @@
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent;
+@using Common.Managers;
+@using Common.State.ServerStats;
+@inject IState<ServerStatsState> State
+@inject IStatsManager StatManager
+
+<RadzenChart>
+    <RadzenLineSeries Smooth="false" Data="@_serverLoad" CategoryProperty="Time" Title="Server Load (ms)" LineType="LineType.Solid" ValueProperty="MS">
+        <RadzenMarkers MarkerType="MarkerType.Square" />
+        <RadzenLegend Visible="false" />
+        <RadzenCategoryAxis Visible=false />
+        <ValueAxisTitle Text="Server Load (ms)" />
+    </RadzenLineSeries>
+</RadzenChart>
+
+@code {
+    IEnumerable<Load> _serverLoad = Enumerable.Empty<Load>();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        State.StateChanged += (_, _) =>
+        {
+            _serverLoad = StatManager.GetServerLoad();
+            InvokeAsync(StateHasChanged);
+        };
+
+        _serverLoad = StatManager.GetServerLoad();
+    }
+}

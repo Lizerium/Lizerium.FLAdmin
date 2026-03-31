@@ -1,0 +1,33 @@
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent;
+@using Common.Managers;
+@using Common.State.ServerStats;
+@inject IState<ServerStatsState> State
+@inject IStatsManager StatManager
+
+<RadzenChart>
+    <RadzenLineSeries  Smooth="false" Data="@_memoryUsage" CategoryProperty="Time" Title="Memory Usage (MB)" LineType="LineType.Solid" ValueProperty="UsageDenomination">
+        <RadzenMarkers MarkerType="MarkerType.Square" />
+        <RadzenLegend Visible="false" />
+        <RadzenCategoryAxis Visible="false" />
+        <RadzenValueAxis FormatString="{0:0.##}"/>
+        <ValueAxisTitle Text="Memory Usage (MB)" />
+    </RadzenLineSeries>
+</RadzenChart>
+
+@code {
+
+    IEnumerable<Usage> _memoryUsage = Enumerable.Empty<Usage>();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        State.StateChanged += (_, _) =>
+        {
+            _memoryUsage = StatManager.GetMemoryUsage();
+            InvokeAsync(StateHasChanged);
+        };
+
+        _memoryUsage = StatManager.GetMemoryUsage();
+    }
+}

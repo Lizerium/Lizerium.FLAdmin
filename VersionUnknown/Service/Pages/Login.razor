@@ -1,0 +1,89 @@
+@page "/login"
+@using Logic.Auth
+@using Service.Pages.Dialogs
+@using Common.Storage
+
+@attribute [AllowAnonymous]
+@inject AuthStateProvider AuthState
+@inject NavigationManager NavigationManager
+@inject IAccountStorage AccountStorage
+@inject DialogService DialogService
+
+<RadzenStack class="vh-100" Gap="1rem" Style=@(_render ? "display: inherit" : "display: none") AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
+    <RadzenTemplateForm TItem="Model" Data="_model" Submit="OnSubmit">
+        <RadzenFieldset Text="Login">
+            <RadzenStack>
+                <RadzenTextBox Name="Name" @bind-Value="_model.Username" Placeholder="Username"/>
+                <RadzenRequiredValidator Component="Name" Text="Username is required"/>
+
+                <RadzenPassword Name="Password" @bind-Value="_model.Password" Placeholder="Password"/>
+                <RadzenRequiredValidator Component="Password" Text="Password is required"/>
+
+                <RadzenCheckBox Name="Remember Me" @bind-Value="_model.RememberMe"/>
+                <RadzenCustomValidator Component="Remember Me" Text="The username or password was incorrect." Validator="() => _hideInvalidLogin" />
+
+                <RadzenRow AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" Class="rz-mt-4">
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="Submit"></RadzenButton>
+                </RadzenRow>
+            </RadzenStack>
+        </RadzenFieldset>
+    </RadzenTemplateForm>
+</RadzenStack>
+
+@code
+{
+    private class Model
+    {
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public bool RememberMe { get; set; }
+    }
+
+    private readonly Model _model = new();
+    private bool _hideInvalidLogin = true;
+
+    bool _render = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        if (!await AccountStorage.InstanceAdminExists())
+        {
+            await DialogService.OpenAsync<FirstTimeLogin>("First Time Setup", options: new DialogOptions()
+            {
+				AutoFocusFirstElement = true,
+				CloseDialogOnEsc = false,
+				CloseDialogOnOverlayClick = false,
+
+            });
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (!firstRender)
+        {
+            return;
+        }
+
+        // Attempt
+        var e = await AuthState.GetAuthenticationStateAsync();
+
+        _render = true;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task OnSubmit()
+    {
+        if (await AuthState.Login(_model.Username, _model.Password, _model.RememberMe))
+        {
+            NavigationManager.NavigateTo("/");
+            return;
+        }
+
+        _hideInvalidLogin = false;
+    }
+}

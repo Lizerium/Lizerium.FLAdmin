@@ -1,0 +1,31 @@
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent;
+@using Common.Managers;
+@using Common.State.ServerStats;
+@inject IState<ServerStatsState> State
+@inject IStatsManager StatManager
+
+<RadzenChart>
+    <RadzenLineSeries Smooth="false" Data="@_playerTrend" CategoryProperty="Key" Title="Player Count" LineType="LineType.Solid" ValueProperty="Value">
+        <RadzenMarkers MarkerType="MarkerType.Square" />
+        <RadzenLegend Visible="false" />
+        <RadzenCategoryAxis Visible=false />
+        <ValueAxisTitle Text="Player Count"/>
+    </RadzenLineSeries>
+</RadzenChart>
+
+@code {
+    IEnumerable<KeyValuePair<string, uint>> _playerTrend = Enumerable.Empty<KeyValuePair<string, uint>>();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        State.StateChanged += (_, _) =>
+        {
+            _playerTrend = StatManager.GetPlayerTrend();
+            InvokeAsync(StateHasChanged);
+        };
+
+        _playerTrend = StatManager.GetPlayerTrend();
+    }
+}

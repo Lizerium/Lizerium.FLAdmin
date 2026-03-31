@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>FlAdmin.Logic</RootNamespace>
+        <AssemblyName>FlAdmin.Logic</AssemblyName>
+        <Features>strict</Features>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Common\Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="FlAdmin.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Flurl" Version="4.0.0" />
+        <PackageReference Include="Flurl.Http" Version="4.0.2" />
+        <PackageReference Include="LanguageExt.Core" Version="4.4.9" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="8.0.8" />
+        <PackageReference Include="MongoDB.Driver" Version="2.29.0" />
+        <PackageReference Include="MongoDB.Driver.Core" Version="2.29.0" />
+        <PackageReference Include="Serilog" Version="4.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="LibreLancer.Data">
+        <HintPath>..\..\..\Lizerium.Freelancer.Data\LibreLancer.Data\bin\Release\net8.0\LibreLancer.Data.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
