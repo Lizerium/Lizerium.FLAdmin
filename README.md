@@ -5,14 +5,14 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Abandoned-orange?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Stage-Prototype-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" />
-  <img src="https://img.shields.io/badge/.NET-Backend-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" />
-  <img src="https://img.shields.io/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
-  <img src="https://img.shields.io/badge/RabbitMQ-Queue-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white" />
-  <img src="https://img.shields.io/badge/Message%20Bus-Event%20Driven-6A1B9A?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/License-Private-lightgrey?style=for-the-badge" />
+  <img src="https://shields.dvurechensky.pro/badge/Status-Abandoned-orange?style=for-the-badge" />
+  <img src="https://shields.dvurechensky.pro/badge/Stage-Prototype-blue?style=for-the-badge" />
+  <img src="https://shields.dvurechensky.pro/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" />
+  <img src="https://shields.dvurechensky.pro/badge/.NET-Backend-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" />
+  <img src="https://shields.dvurechensky.pro/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+  <img src="https://shields.dvurechensky.pro/badge/RabbitMQ-Queue-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white" />
+  <img src="https://shields.dvurechensky.pro/badge/Message%20Bus-Event%20Driven-6A1B9A?style=for-the-badge" />
+  <img src="https://shields.dvurechensky.pro/badge/License-Private-lightgrey?style=for-the-badge" />
 </p>
 
 ---
