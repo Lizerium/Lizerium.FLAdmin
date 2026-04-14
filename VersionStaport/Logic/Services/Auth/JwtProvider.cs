@@ -1,4 +1,12 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿/*
+ * Author: Nikolay Dvurechensky and TheStarport
+ * Site: https://dvurechensky.pro/
+ * Gmail: dvurechenskysoft@gmail.com
+ * Last Updated: 15 апреля 2026 01:16:00
+ * Version: 1.0.172
+ */
+
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using FlAdmin.Common.Auth;
 using Microsoft.IdentityModel.Tokens;
