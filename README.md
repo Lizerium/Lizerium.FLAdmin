@@ -36,6 +36,14 @@
 >
 > If you are looking for related engineering and supporting tools, start there.
 
+## Credits
+
+> [!NOTE]
+> This project is based on work from the Freelancer community.
+> Reworked and integrated into Lizerium ecosystem.
+>
+> Contributors: [`MrNen`](https://github.com/MrNen), [`Lazrius`](https://github.com/Lazrius), [`Shiniri`](https://github.com/Shiniri), [`Mbogdan95`](https://github.com/Mbogdan95)
+
 ---
 
 ## 📌 About the Project
